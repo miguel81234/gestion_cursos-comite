@@ -1,88 +1,127 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Se crean dos Listas separadas en lugar de una sola, 
-        // tal como se pidio para no usar polimorfismo al agrupar ambas en una.
+
         ArrayList<Estudiante> listaEstudiantes = new ArrayList<>();
         ArrayList<Instructor> listaInstructores = new ArrayList<>();
 
-        System.out.println("=== SISTEMA DE GESTION DE CURSOS EN LINEA ===");
-        
-        // 1. Permitir el registro de personas (estudiantes e instructores)
-        System.out.println("\n--- 1. Registrando personas ---");
-        
-        Estudiante est1 = new Estudiante("Juan Perez", "1001", "juan@correo.com", "Java Basico");
-        Estudiante est2 = new Estudiante("Maria Lopez", "1002", "maria@correo.com", "Bases de Datos");
-        listaEstudiantes.add(est1);
-        listaEstudiantes.add(est2);
-        System.out.println("-> Se han registrado 2 estudiantes.");
+        Scanner sc = new Scanner(System.in);
+        int opcion;
 
-        Instructor inst1 = new Instructor("Carlos Gomez", "2001", "carlos@correo.com", "Programacion Backend");
-        Instructor inst2 = new Instructor("Ana Martinez", "2002", "ana@correo.com", "Desarrollo Web");
-        listaInstructores.add(inst1);
-        listaInstructores.add(inst2);
-        System.out.println("-> Se han registrado 2 instructores.");
+        do {
+            System.out.println("\n=== SISTEMA DE GESTION DE CURSOS ===");
+            System.out.println("1. Registrar Estudiante");
+            System.out.println("2. Registrar Instructor");
+            System.out.println("3. Mostrar Personas");
+            System.out.println("4. Buscar por ID");
+            System.out.println("5. Salir");
+            System.out.print("Seleccione una opcion: ");
+            opcion = sc.nextInt();
+            sc.nextLine(); // limpiar buffer
 
-        // 2. Mostrar la lista completa de personas registradas
-        System.out.println("\n--- 2. Mostrando lista completa de personas ---");
-        
-        System.out.println("\n[ LISTA DE ESTUDIANTES ]");
-        // Validacion basica si la lista esta vacia
-        if (listaEstudiantes.size() == 0) {
-            System.out.println("No hay estudiantes registrados.");
-        } else {
-            for (int i = 0; i < listaEstudiantes.size(); i++) {
-                listaEstudiantes.get(i).mostrarInformacion();
-            }
-        }
+            switch (opcion) {
 
-        System.out.println("\n[ LISTA DE INSTRUCTORES ]");
-        if (listaInstructores.size() == 0) {
-            System.out.println("No hay instructores registrados.");
-        } else {
-            for (int i = 0; i < listaInstructores.size(); i++) {
-                listaInstructores.get(i).mostrarInformacion();
-            }
-        }
+                case 1:
+                    System.out.println("\n--- REGISTRAR ESTUDIANTE ---");
 
-        // 3. Permitir la consulta individual de una persona a partir de su identificacion
-        System.out.println("\n--- 3. Consultando persona por identificacion ---");
-        
-        // Puedes cambiar este valor para probar buscar un estudiante o un ID inexistente
-        String idBuscar = "2001";
-        System.out.println("Buscando identificacion: " + idBuscar);
-        
-        boolean encontrado = false;
+                    System.out.print("Nombre: ");
+                    String nombreE = sc.nextLine();
 
-        // Buscar primero en la lista de estudiantes
-        for (int i = 0; i < listaEstudiantes.size(); i++) {
-            Estudiante estudiante = listaEstudiantes.get(i);
-            if (estudiante.getIdentificacion().equals(idBuscar)) {
-                System.out.println("\nResultado: Persona encontrada (Estudiante)");
-                estudiante.mostrarInformacion();
-                encontrado = true;
-                break;
-            }
-        }
+                    System.out.print("ID: ");
+                    String idE = sc.nextLine();
 
-        // Si no se encontro en estudiantes, buscar en instructores
-        if (encontrado == false) {
-            for (int i = 0; i < listaInstructores.size(); i++) {
-                Instructor instructor = listaInstructores.get(i);
-                if (instructor.getIdentificacion().equals(idBuscar)) {
-                    System.out.println("\nResultado: Persona encontrada (Instructor)");
-                    instructor.mostrarInformacion();
-                    encontrado = true;
+                    System.out.print("Correo: ");
+                    String correoE = sc.nextLine();
+
+                    System.out.print("Curso: ");
+                    String curso = sc.nextLine();
+
+                    listaEstudiantes.add(new Estudiante(nombreE, idE, correoE, curso));
+                    System.out.println("✅ Estudiante registrado");
                     break;
-                }
-            }
-        }
 
-        if (encontrado == false) {
-            System.out.println("\nResultado: No se encontro ninguna persona con la ID: " + idBuscar);
-        }
-        
-        System.out.println("\n=== FIN DE LA DEMOSTRACION ===");
+                case 2:
+                    System.out.println("\n--- REGISTRAR INSTRUCTOR ---");
+
+                    System.out.print("Nombre: ");
+                    String nombreI = sc.nextLine();
+
+                    System.out.print("ID: ");
+                    String idI = sc.nextLine();
+
+                    System.out.print("Correo: ");
+                    String correoI = sc.nextLine();
+
+                    System.out.print("Especialidad: ");
+                    String especialidad = sc.nextLine();
+
+                    listaInstructores.add(new Instructor(nombreI, idI, correoI, especialidad));
+                    System.out.println("✅ Instructor registrado");
+                    break;
+
+                case 3:
+                    System.out.println("\n--- LISTA DE ESTUDIANTES ---");
+                    if (listaEstudiantes.isEmpty()) {
+                        System.out.println("No hay estudiantes registrados.");
+                    } else {
+                        for (Estudiante e : listaEstudiantes) {
+                            e.mostrarInformacion();
+                        }
+                    }
+
+                    System.out.println("\n--- LISTA DE INSTRUCTORES ---");
+                    if (listaInstructores.isEmpty()) {
+                        System.out.println("No hay instructores registrados.");
+                    } else {
+                        for (Instructor i : listaInstructores) {
+                            i.mostrarInformacion();
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("\nIngrese ID a buscar: ");
+                    String idBuscar = sc.nextLine();
+
+                    boolean encontrado = false;
+
+                    for (Estudiante e : listaEstudiantes) {
+                        if (e.getIdentificacion().equals(idBuscar)) {
+                            System.out.println("\n✅ Encontrado (Estudiante)");
+                            e.mostrarInformacion();
+                            encontrado = true;
+                            break;
+                        }
+                    }
+
+                    if (!encontrado) {
+                        for (Instructor i : listaInstructores) {
+                            if (i.getIdentificacion().equals(idBuscar)) {
+                                System.out.println("\n✅ Encontrado (Instructor)");
+                                i.mostrarInformacion();
+                                encontrado = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!encontrado) {
+                        System.out.println("❌ No se encontró la persona");
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("👋 Saliendo del sistema...");
+                    break;
+
+                default:
+                    System.out.println("⚠️ Opción inválida");
+            }
+
+        } while (opcion != 5);
+
+        sc.close();
     }
 }
