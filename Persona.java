@@ -1,7 +1,7 @@
 public abstract class Persona {
-    protected String nombre;
-    protected String identificacion;
-    protected String correo;
+    private String nombre;
+    private String identificacion;
+    private String correo;
 
     public Persona(String nombre, String identificacion, String correo) {
         this.nombre = nombre;
