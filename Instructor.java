@@ -19,10 +19,10 @@ public class Instructor extends Persona {
     @Override
     public void mostrarInformacion() {
         System.out.println("--- Informacion del Instructor ---");
-        System.out.println("Nombre: " + this.nombre);
-        System.out.println("Identificacion: " + this.identificacion);
-        System.out.println("Correo: " + this.correo);
-        System.out.println("Especialidad: " + this.especialidad);
+        System.out.println("Nombre: " + this.getNombre());
+        System.out.println("Identificacion: " + this.getIdentificacion());
+        System.out.println("Correo: " + this.getCorreo());
+        System.out.println("Especialidad: " + this.getEspecialidad());
         System.out.println("----------------------------------");
     }
 }

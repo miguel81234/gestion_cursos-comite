@@ -19,10 +19,10 @@ public class Estudiante extends Persona {
     @Override
     public void mostrarInformacion() {
         System.out.println("--- Informacion del Estudiante ---");
-        System.out.println("Nombre: " + this.nombre);
-        System.out.println("Identificacion: " + this.identificacion);
-        System.out.println("Correo: " + this.correo);
-        System.out.println("Curso Inscrito: " + this.cursoInscrito);
+        System.out.println("Nombre: " + this.getNombre());
+        System.out.println("Identificacion: " + this.getIdentificacion());
+        System.out.println("Correo: " + this.getCorreo());
+        System.out.println("Curso Inscrito: " + this.getCursoInscrito());
         System.out.println("----------------------------------");
     }
 }
