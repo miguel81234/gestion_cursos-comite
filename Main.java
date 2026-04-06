@@ -39,7 +39,7 @@ public class Main {
                     String curso = sc.nextLine();
 
                     listaEstudiantes.add(new Estudiante(nombreE, idE, correoE, curso));
-                    System.out.println("✅ Estudiante registrado");
+                    System.out.println(" Estudiante registrado");
                     break;
 
                 case 2:
@@ -58,7 +58,7 @@ public class Main {
                     String especialidad = sc.nextLine();
 
                     listaInstructores.add(new Instructor(nombreI, idI, correoI, especialidad));
-                    System.out.println("✅ Instructor registrado");
+                    System.out.println("Instructor registrado");
                     break;
 
                 case 3:
@@ -89,7 +89,7 @@ public class Main {
 
                     for (Estudiante e : listaEstudiantes) {
                         if (e.getIdentificacion().equals(idBuscar)) {
-                            System.out.println("\n✅ Encontrado (Estudiante)");
+                            System.out.println("\n Encontrado (Estudiante)");
                             e.mostrarInformacion();
                             encontrado = true;
                             break;
@@ -99,7 +99,7 @@ public class Main {
                     if (!encontrado) {
                         for (Instructor i : listaInstructores) {
                             if (i.getIdentificacion().equals(idBuscar)) {
-                                System.out.println("\n✅ Encontrado (Instructor)");
+                                System.out.println("\n Encontrado (Instructor)");
                                 i.mostrarInformacion();
                                 encontrado = true;
                                 break;
@@ -108,16 +108,16 @@ public class Main {
                     }
 
                     if (!encontrado) {
-                        System.out.println("❌ No se encontró la persona");
+                        System.out.println(" No se encontró la persona");
                     }
                     break;
 
                 case 5:
-                    System.out.println("👋 Saliendo del sistema...");
+                    System.out.println(" Saliendo del sistema...");
                     break;
 
                 default:
-                    System.out.println("⚠️ Opción inválida");
+                    System.out.println(" Opción inválida");
             }
 
         } while (opcion != 5);
